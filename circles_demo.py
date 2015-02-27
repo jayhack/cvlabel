@@ -10,7 +10,7 @@ if __name__ == '__main__':
 
 
 	def get_random_points(image, n=4):
-		"""returns n' random (x,y) coordinates"""
+		"""returns a list of n random (x,y) coordinates"""
 		xtop, ytop, nchannels = image.shape
 		xs = np.random.randint(0, xtop, (n,1))
 		ys = np.random.randint(0, ytop, (n,1))

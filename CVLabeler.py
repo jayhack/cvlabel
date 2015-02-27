@@ -80,12 +80,10 @@ class CVLabeler(object):
 
 
 	def label(self, image):
-		"""
-			allows one to label the supplied image
-		"""
+		"""has user label supplied image, returning (objs, labels)"""
 		#=====[ Step 1: list support	]=====
 		if type(image) == list:
-			return map(self.label, image)
+			return map(self.labels, image)
 
 		#=====[ Step 2: get objects	]=====
 		self.reset_objs_labels(image)
@@ -100,6 +98,10 @@ class CVLabeler(object):
 			key = cv2.waitKey(20)
 			if key & 0xFF == 27:
 				break
+
+		return self.objs, self.labels
+
+
 
 
 

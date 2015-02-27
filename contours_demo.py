@@ -17,6 +17,5 @@ if __name__ == '__main__':
 
 
 	labeler = CVLabeler(get_contours, draw_contour, contour_distance, boolean_flip_label)
-	image = cv2.imread('lena.bmp')
-	labeler.label(image)
+	objs, labels = labeler.label(cv2.imread('lena.bmp'))
 
