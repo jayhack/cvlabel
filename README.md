@@ -7,6 +7,7 @@ This python module allows one to easily and intuitively mark images via OpenCV's
 
 
 ## Setup
+You will need to install OpenCV with Python bindings; this is not covered in setup.py.
 ```
 	~$: git clone git@github.com:jayhack/cvlabel.git
 	~$: python setup.py install

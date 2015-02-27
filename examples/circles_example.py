@@ -1,9 +1,10 @@
 import numpy as np
 import cv2
-from CVLabeler import CVLabeler
-from draw import draw_circle
-from distance import euclidean_distance
-from label import boolean_flip_label
+
+from cvlabel import CVLabeler
+from cvlabel import draw_circle
+from cvlabel import euclidean_distance
+from cvlabel import boolean_flip_label
 
 
 if __name__ == '__main__':

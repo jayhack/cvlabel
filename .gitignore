@@ -1,2 +1,8 @@
+#=====[ Standard ]=====
 *.pyc
 *~
+
+#=====[ setup.py ]=====
+build
+dist
+*.egg-info
