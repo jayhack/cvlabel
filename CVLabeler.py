@@ -3,6 +3,17 @@ import cv2
 from operator import itemgetter
 
 class CVLabeler(object):
+	"""
+	Class: CVLabeler
+	================
+	Main class for labelling.
+
+	Usage:
+	------
+		from cvlabel import CVLabeler, euclidean_dist
+		labeler = CVLabeler(get_objects, draw_object, )
+	"""
+
 
 	window_name = 'DISPLAY'
 	# window_size = (640, 480)
