@@ -21,6 +21,6 @@ if __name__ == '__main__':
 
 	for i in range(5):
 		image = np.zeros((400, 400, 3)).astype(np.uint8)
-		labels = labeler.label(image)
+		objs, labels = labeler.label(image)
 		print 'Final labels: ', labels
 
