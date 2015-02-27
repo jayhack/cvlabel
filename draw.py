@@ -5,19 +5,6 @@ import cv2
 from decorators import TypeValidatingDecorator
 
 
-falses = [None, False, 0, 0.0]
-trues = [True, 1, 1.0]
-pure_colors = {
-				'blue':(255, 0, 0),
-				'red':(0, 0, 255),
-				'green':(0, 255,0)
-				}
-default_color_map = dict(
-							{k:pure_colors['red'] for k in falses}.items() +
-							{k:pure_colors['green'] for k in trues}.items()
-						)
-
-
 class draw_func(TypeValidatingDecorator):
 	"""
 	Decorator: draw_func
@@ -30,13 +17,28 @@ class draw_func(TypeValidatingDecorator):
 		super(draw_func, self).__init__(valid_types)
 
 		if color_map is None:
-			color_map = default_color_map
+			color_map = self.default_color_map()
 	
 		self.color_map = color_map
 		if not type(self.color_map) == dict:
 			raise TypeError("color_map must be a dict. you used %s" % str(type(self.color_map)))
 		if not all([self.is_color(k) for k in self.color_map.values()]):
 			raise TypeError("color_map values must all be colors (int or triplet of ints)")
+
+
+	def default_color_map(self):
+		"""constructs and returns a default color map"""
+		falses = [None, False, 0, 0.0]
+		trues = [True, 1, 1.0]
+		pure_colors = {
+						'blue':(255, 0, 0),
+						'red':(0, 0, 255),
+						'green':(0, 255,0)
+						}
+		return dict(
+						{k:pure_colors['red'] for k in falses}.items() +
+						{k:pure_colors['green'] for k in trues}.items()
+					)
 
 
 	def is_color(self, color):
