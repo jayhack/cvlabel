@@ -18,6 +18,7 @@ if __name__ == '__main__':
 		return disp_img
 
 	images = [np.zeros((400, 400)).astype(np.uint8) for i in range(3)]
+
 	labeler = CVLabeler(get_objects, draw_object)
 	for image in images:
 		labeler.label(image)
