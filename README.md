@@ -1,9 +1,16 @@
 # cvlabel
 Jay Hack (jhack@stanford.edu), Winter 2015
 
+
 ## Overview
 This python module allows one to easily and intuitively mark images via OpenCV's image display interface. Merely define how to extract objects from an image, how to draw them on the image and how to assign labels.
 
+
+## Setup
+```
+	~$: git clone git@github.com:jayhack/cvlabel.git
+	~$: python setup.py install
+```
 
 ## Example Usage
 
