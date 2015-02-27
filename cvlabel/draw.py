@@ -71,7 +71,7 @@ class draw_func(TypeValidatingDecorator):
 
 
 @draw_func(valid_types=[tuple])
-def draw_circle(disp_image, obj, color, radius=3, thickness=2):
+def draw_circle(disp_image, obj, color, radius=3, thickness=1):
 	"""draws a circle around obj, assuming obj is a (x,y) coordinate"""
 	cv2.circle(disp_image, obj, radius, color=color, thickness=thickness)
 
