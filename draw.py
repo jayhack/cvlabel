@@ -76,8 +76,8 @@ def draw_circle(disp_image, obj, color, radius=3, thickness=2):
 	cv2.circle(disp_image, obj, radius, color=color, thickness=thickness)
 
 
-@draw_func(valid_types=[np.array])
-def draw_contour(disp_image, obj, label, color_map=None, thickness=2):
-	"""draws a circle around obj, assuming obj is a (x,y) coordinate"""
-	cv2.circle(disp_image, obj, 5, color=color, thickness=thickness)
+@draw_func(valid_types=np.ndarray)
+def draw_contour(disp_image, obj, color, thickness=2):
+	"""draws contour"""
+	cv2.drawContours(disp_image, [obj], -1, color, thickness)
 

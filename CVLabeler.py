@@ -14,9 +14,7 @@ class CVLabeler(object):
 		labeler = CVLabeler(get_objects, draw_object, )
 	"""
 
-
 	window_name = 'DISPLAY'
-	# window_size = (640, 480)
 
 	def __init__(self, get_objects, draw_object, get_distance, update_object):
 		"""
@@ -61,6 +59,7 @@ class CVLabeler(object):
 	def get_closest_obj(self, objs, x, y):
 		"""returns closest x,y"""
 		distances = [self.get_distance(obj, x, y) for obj in objs]
+		print (x, y)
 		ix, dist = min(enumerate(distances), key=itemgetter(1))
 		return ix, objs[ix]
 
@@ -68,11 +67,8 @@ class CVLabeler(object):
 	def mouse_callback(self, event, x, y, flags, param):
 		"""handles mouse input"""
 		if event == cv2.EVENT_LBUTTONDOWN:
-			print "BUTTON CLICK: (%d, %d)" % (x, y)
 			ix, obj = self.get_closest_obj(self.objs, x, y)
-			print 'before: ', self.labels
 			self.labels[ix] = self.update_object(event, self.labels[ix])
-			print 'after: ', self.labels
 
 
 	def annotate_image(self, image, objs, labels):
@@ -100,6 +96,7 @@ class CVLabeler(object):
 			disp_img = self.annotate_image(image, self.objs, self.labels)
 			cv2.imshow(self.window_name, disp_img)
 
+			#=====[ Step 4: escape to move to next image	]=====
 			key = cv2.waitKey(20)
 			if key & 0xFF == 27:
 				break

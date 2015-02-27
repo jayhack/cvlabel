@@ -17,7 +17,7 @@ class TypeValidatingDecorator(object):
 			if self.valid_types is None:
 				return
 			elif not type(x) in self.valid_types:
-				raise TypeError("Incompatible label type: %s" % str(type(x)))
+				raise TypeError("Incompatible type: %s" % str(type(x)))
 
 
 	def __call__(self, f):
