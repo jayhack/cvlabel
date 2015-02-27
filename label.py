@@ -1,31 +1,23 @@
 import numpy as np
 
+from decorators import TypeValidatingDecorator
 
-class label_func(object):
+class label_func(TypeValidatingDecorator):
 	"""
 	Decorator: label_func
 	---------------------
-	- validates type of label 
+	- validates type of label
 	"""
 	def __init__(self, valid_types=None):
 		"""parses valid_types"""
-		if not valid_types is None:
-			if not type(valid_types) in [list, tuple]:
-				valid_types = [valid_types]
-		self.valid_types = valid_types
+		super(label_func, self).__init__(valid_types)
+
 
 	def __call__(self, f):
 		"""decorates"""
 
-		def validate_label(label):
-			"""raises assertion if label is incorrect type"""
-			if self.valid_types is None:
-				return
-			elif not type(label) in self.valid_types:
-				raise TypeError("Incompatible label type: %s" % str(type(label)))
-
 		def f_decorated(event, label):
-			validate_label(label)
+			self.validate_type(label)
 			return f(event, label)
 
 		return f_decorated
