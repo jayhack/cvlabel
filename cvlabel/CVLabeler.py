@@ -59,7 +59,6 @@ class CVLabeler(object):
 	def get_closest_obj(self, objs, x, y):
 		"""returns closest x,y"""
 		distances = [self.get_distance(obj, x, y) for obj in objs]
-		print (x, y)
 		ix, dist = min(enumerate(distances), key=itemgetter(1))
 		return ix, objs[ix]
 
