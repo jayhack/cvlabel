@@ -1,6 +1,9 @@
 #=====[ Standard ]=====
 *.pyc
+*.npy
+*.pkl
 *~
+.DS_Store
 
 #=====[ setup.py ]=====
 build
