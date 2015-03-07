@@ -11,12 +11,13 @@ class Labeler(object):
 
 	window_name = 'DISPLAY'
 
-	def __init__(self, get_objects, draw_object, get_distance, update_object):
+	def __init__(self, get_objects, update_objects, draw_object, get_distance, update_label):
 		"""
 			get_objects: image -> objects  
+			update_objects: (event, objects) -> new objects
 			draw_object: (image, objects) -> drawn image
 			get_distance: (object, x, y) -> distance from (x, y)
-			update_object: (event, label) -> new label
+			update_label: (event, label) -> new label
 		"""
 		self.labels = None
 		self.objs = None
@@ -24,7 +25,7 @@ class Labeler(object):
 		self.get_objects = get_objects
 		self.draw_object = draw_object
 		self.get_distance = get_distance
-		self.update_object = update_object
+		self.update_label = update_label
 
 		self.create_display()
 
@@ -62,7 +63,7 @@ class Labeler(object):
 		"""handles mouse input"""
 		if event == cv2.EVENT_LBUTTONDOWN:
 			ix, obj = self.get_closest_obj(self.objs, x, y)
-			self.labels[ix] = self.update_object(event, self.labels[ix])
+			self.labels[ix] = self.update_label(event, self.labels[ix])
 
 
 	def annotate_image(self, image, objs, labels):
@@ -80,7 +81,29 @@ class Labeler(object):
 
 	def label(self, image):
 		"""has user label supplied image, returning (objs, labels)"""
-		raise NotImplementedError
+		#=====[ Step 1: list support	]=====
+		if type(image) == list:
+			return map(self.labels, image)
+
+		#=====[ Step 2: get objects	]=====
+		self.reset_objs_labels(image)
+
+
+		#####[ LOOP WHILE ANNOTATING	]#####
+		while True:
+
+			#=====[ Step 4: display image	]=====
+			disp_img = self.annotate_image(image, self.objs, self.labels)
+			cv2.imshow(self.window_name, image)
+
+			#=====[ Step 5: wait for ESC to continue	]=====
+			key = cv2.waitKey(20)
+			if key & 0xFF == 27:
+				break
+
+		return self.objs, self.labels
+
+
 
 
 
