@@ -1,7 +1,7 @@
 import numpy as np
 import cv2
 
-from cvlabel import CVLabeler
+from cvlabel import ClickLabeler
 from cvlabel import draw_circle
 from cvlabel import euclidean_distance
 from cvlabel import boolean_flip_label
@@ -17,7 +17,7 @@ if __name__ == '__main__':
 		ys = np.random.randint(0, ytop, (n,1))
 		return [(int(xs[i]), int(ys[i])) for i in range(n)]
 
-	labeler = CVLabeler(get_random_points, draw_circle, euclidean_distance, boolean_flip_label)
+	labeler = ClickLabeler(get_random_points, draw_circle, euclidean_distance, boolean_flip_label)
 
 	for i in range(5):
 		image = np.zeros((400, 400, 3)).astype(np.uint8)
